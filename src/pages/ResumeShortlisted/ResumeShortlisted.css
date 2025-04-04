@@ -1,0 +1,401 @@
+.resume-shortlisted {
+  padding: 20px;
+}
+
+.page-header {
+  margin-bottom: 30px;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.page-header p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.resume-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.resume-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.search-bar input {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 5px;
+  padding: 12px 15px;
+  color: #ffffff;
+  outline: none;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-button {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.filter-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.filter-button.active {
+  background-color: rgba(0, 230, 118, 0.2);
+  color: #00e676;
+}
+
+.resume-content {
+  display: flex;
+  gap: 20px;
+  height: calc(100vh - 250px);
+}
+
+.resume-list {
+  width: 60%;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.list-header {
+  display: flex;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-item {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+.header-item:nth-child(1) {
+  width: 35%;
+}
+
+.header-item:nth-child(2) {
+  width: 25%;
+}
+
+.header-item:nth-child(3) {
+  width: 20%;
+}
+
+.header-item:nth-child(4) {
+  width: 20%;
+}
+
+.list-body {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.resume-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.resume-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.resume-item.selected {
+  background-color: rgba(0, 230, 118, 0.1);
+}
+
+.resume-candidate {
+  width: 35%;
+  display: flex;
+  align-items: center;
+}
+
+.candidate-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(0, 230, 118, 0.2);
+  color: #00e676;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-right: 12px;
+}
+
+.candidate-name {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.candidate-applied {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.resume-position {
+  width: 25%;
+}
+
+.resume-match {
+  width: 20%;
+  position: relative;
+}
+
+.match-score {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.match-bar {
+  height: 4px;
+  background-color: #00e676;
+  border-radius: 2px;
+}
+
+.resume-status {
+  width: 20%;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.status-badge.shortlisted {
+  background-color: rgba(0, 230, 118, 0.2);
+  color: #00e676;
+}
+
+.status-badge.pending {
+  background-color: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
+}
+
+.status-badge.rejected {
+  background-color: rgba(255, 59, 48, 0.2);
+  color: #ff3b30;
+}
+
+.no-results {
+  padding: 30px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.resume-details {
+  width: 40%;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow-y: auto;
+}
+
+.details-header {
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.candidate-large-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgba(0, 230, 118, 0.2);
+  color: #00e676;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.candidate-header-info {
+  flex: 1;
+}
+
+.candidate-header-info h2 {
+  margin-bottom: 5px;
+}
+
+.candidate-position {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 10px;
+}
+
+.candidate-match {
+  display: flex;
+  align-items: center;
+}
+
+.match-label {
+  margin-right: 10px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.match-value {
+  font-weight: 600;
+  color: #00e676;
+}
+
+.candidate-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.action-button {
+  flex: 1;
+  padding: 8px 0;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.action-button.approve {
+  background-color: #00e676;
+  color: #000000;
+}
+
+.action-button.approve:hover {
+  background-color: #00c853;
+}
+
+.action-button.reject {
+  background-color: rgba(255, 59, 48, 0.2);
+  color: #ff3b30;
+}
+
+.action-button.reject:hover {
+  background-color: rgba(255, 59, 48, 0.3);
+}
+
+.details-content {
+  padding: 20px;
+}
+
+.details-section {
+  margin-bottom: 25px;
+}
+
+.details-section h3 {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-tag {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.analysis-item {
+  margin-bottom: 15px;
+}
+
+.analysis-label {
+  margin-bottom: 5px;
+}
+
+.analysis-bar {
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.analysis-progress {
+  height: 100%;
+  background-color: #00e676;
+}
+
+.notes-input {
+  width: 100%;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  color: #ffffff;
+  resize: vertical;
+}
+
+.no-selection {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+}
+
+.no-selection-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.no-selection h3 {
+  margin-bottom: 10px;
+}
+
+.no-selection p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 768px) {
+  .resume-content {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .resume-list,
+  .resume-details {
+    width: 100%;
+  }
+
+  .resume-list {
+    height: 400px;
+  }
+
+  .resume-details {
+    height: 500px;
+  }
+}
+

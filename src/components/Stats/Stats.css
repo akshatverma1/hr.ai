@@ -1,0 +1,171 @@
+.stats {
+  padding: 40px 0 80px;
+}
+
+.stats-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 20px;
+}
+
+.stats-notification {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.notification-icon {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 230, 118, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check-icon {
+  color: #00e676;
+  font-size: 1.2rem;
+}
+
+.notification-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.notification-time {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.stats-chart {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  grid-column: 2 / 4;
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.chart-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.chart-bar {
+  width: 6%;
+  background-color: #00e676;
+  border-radius: 4px 4px 0 0;
+}
+
+.stats-percentage {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 30px;
+  grid-column: 1 / 3;
+  display: flex;
+  align-items: center;
+}
+
+.percentage-value {
+  font-size: 5rem;
+  font-weight: 700;
+  margin-right: 30px;
+}
+
+.stats-info {
+  flex: 1;
+}
+
+.stats-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.stats-description {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+}
+
+.stats-users {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.users-avatars {
+  display: flex;
+  justify-content: center;
+}
+
+.user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-left: -10px;
+  border: 2px solid rgba(10, 10, 10, 0.8);
+}
+
+.user-avatar:first-child {
+  margin-left: 0;
+}
+
+.users-description {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
+
+.stats-analytics {
+  background-color: #00843e;
+  border-radius: 12px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.analytics-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.analytics-description {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-chart,
+  .stats-percentage {
+    grid-column: auto;
+  }
+}
+
