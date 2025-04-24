@@ -36,38 +36,25 @@ const HrAiAgent = () => {
         <h1>HR AI Agent</h1>
         <p>Your intelligent assistant for HR tasks and candidate management</p>
       </div>
-
       <div className="agent-container">
-        <div className="agent-sidebar">
-          <div className="agent-features">
-            <h3>Features</h3>
-            <ul>
-              <li>
-                <span className="feature-icon">📋</span>
-                <span>Resume Analysis</span>
-              </li>
-              <li>
-                <span className="feature-icon">🗓️</span>
-                <span>Interview Scheduling</span>
-              </li>
-              <li>
-                <span className="feature-icon">📊</span>
-                <span>Candidate Scoring</span>
-              </li>
-              <li>
-                <span className="feature-icon">📝</span>
-                <span>Automated Feedback</span>
-              </li>
-              <li>
-                <span className="feature-icon">🤖</span>
-                <span>AI-Powered Screening</span>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <div
+          className="aichatbot"
+          style={{
+            width: "95vw",
+            height: "100vh",
+          }}
+        >
+          <iframe
+            src="https://cdn.botpress.cloud/webchat/v2.4/shareable.html?configUrl=https://files.bpcontent.cloud/2025/04/24/20/20250424201709-GO8DK3FG.json"
+            title="AI Chatbot"
+            width="100%"
+            height="100%"
 
+            style={{ border: "none", overflow: "hidden" }}
+          />
+        </div>
         <div className="agent-chat">
-          <div className="chat-messages">
+          {/* <div className="chat-messages">
             {messages.map((message, index) => (
               <div key={index} className={`message ${message.role === "user" ? "user-message" : "system-message"}`}>
                 <div className="message-avatar">{message.role === "user" ? "👤" : "🤖"}</div>
@@ -84,7 +71,8 @@ const HrAiAgent = () => {
               placeholder="Ask your HR AI assistant..."
             />
             <button type="submit">Send</button>
-          </form>
+          </form> */}
+
         </div>
       </div>
     </div>

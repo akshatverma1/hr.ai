@@ -1,6 +1,7 @@
 .hr-ai-agent {
   padding: 20px;
   margin-top: 60px;
+  margin-right: 2rem;
 }
 
 .page-header {
@@ -20,6 +21,7 @@
   display: flex;
   gap: 30px;
   height: calc(100vh - 200px);
+  margin-right: 2rem;
 }
 
 .agent-sidebar {
