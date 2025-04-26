@@ -66,10 +66,10 @@ app.post('/upload', upload.array('pdfs'), async (req, res) => {
         // const prompt = "In this content they carry the word (skill) then return the only YES otherwise return NO and answer in one word. without any space";
         // const prompt = "If the content carry the any (Person name , email, phone number) return the (Person name , email, phone number)  if they do not any then return NO"
         const aiprompt = "Check if the skill 'java' is mentioned in the resume. If it is, return the candidate's name. If not, return 'No skills are found in this Resume.'"
-        const cont = element.content;
+        const cont = await element.content;
         const result = await model.generateContent([aiprompt,cont]);
         // console.log("answer"+" "+"="+" "+result.response.text());
-        ress.push(result.response.text());
+        await ress.push(result.response.text());
         // res.redirect("http://localhost:5173/");
         // setTimeout(()=>{
         //     // res.redirect("https://www.aitextify.space/show");
@@ -78,7 +78,7 @@ app.post('/upload', upload.array('pdfs'), async (req, res) => {
     run();
     })
 
-    res.json(results);
+    await res.json(results);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -93,6 +93,7 @@ app.get("/getResult",(req,res)=>{
 })
 app.get("/delete",(req,res)=>{
   ress= [];
+  res.send("All file is Delete");
 })
 
 // Start Server
