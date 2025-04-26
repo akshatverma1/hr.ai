@@ -91,6 +91,9 @@ app.get("/getResult",(req,res)=>{
         res.json(ress);
     },1000) 
 })
+app.get("/delete",(req,res)=>{
+  ress= [];
+})
 
 // Start Server
 const PORT = 5000;
