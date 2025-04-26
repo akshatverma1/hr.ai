@@ -39,7 +39,7 @@ let ress = [];
 app.post('/upload', upload.array('pdfs'), async (req, res) => {
   let {enter} = await req.body;
   console.log(enter);
- 
+  try {
     const results = await Promise.all(
       req.files.map(async (file) => {
         const data = await pdf(file.buffer);
@@ -75,7 +75,9 @@ app.post('/upload', upload.array('pdfs'), async (req, res) => {
     })
 
     res.json(results);
-  
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 app.get("/getResult",(req,res)=>{
