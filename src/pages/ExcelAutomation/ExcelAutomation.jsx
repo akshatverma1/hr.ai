@@ -50,7 +50,7 @@ const ExcelAutomation = () => {
   const [loading1, setLoading1] = useState(false);
   useEffect(() => {
     async function apicalling() {
-      let url = "http://localhost:5000/getResult";
+      let url = "https://hr-ai-lake.vercel.app/getResult";
       let response = await fetch(url);
       let data = await response.json();
       // console.log(data);
@@ -72,7 +72,7 @@ const ExcelAutomation = () => {
 
     try {
       setLoading(true);
-      const response = await axios.post('http://localhost:5000/upload', formData, {
+      const response = await axios.post('https://hr-ai-lake.vercel.app/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       console.log(response.data);
