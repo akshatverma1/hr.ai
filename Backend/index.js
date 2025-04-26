@@ -35,6 +35,10 @@ const upload = multer({
 
 let ress = [];
 
+app.get("/",(req,res)=>{
+  res.send("Backend is working");
+})
+
 // PDF Processing Endpoint
 app.post('/upload', upload.array('pdfs'), async (req, res) => {
   let {enter} = await req.body;

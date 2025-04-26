@@ -21,14 +21,7 @@ function PDFUploader() {
     apicalling();
   });
 
-  const handleSubmit = async (e) => {
-
-     
-     
-    
-
-
-
+  const handleSubmit = async (e) => {     
     e.preventDefault();
     if (!files.length) return;
 
