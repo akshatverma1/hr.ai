@@ -9,6 +9,7 @@ import UserPanel from "./pages/UserPanel/UserPanel"
 import ExcelAutomation from "./pages/ExcelAutomation/ExcelAutomation"
 import ResumeShortlisted from "./pages/ResumeShortlisted/ResumeShortlisted"
 import Aichat from "./pages/Aichatbot/Aibot"
+import Resumeshort from "./pages/Resume-shortlisted-api/resume.jsx"
 import "./App.css"
 
 function App() {
@@ -40,11 +41,12 @@ function App() {
                 <Route path="/hr-ai-agent" element={<HrAiAgent />} />
                 <Route path="/user-panel" element={<UserPanel />} />
                 {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
-                <Route path="/excel-automation" element={<ExcelAutomation />} />
+                <Route path="/resume-automation" element={<ExcelAutomation />} />
                 <Route path="/resume-shortlisted" element={<ResumeShortlisted />} />
                 <Route path="/user-panel" element={<UserPanel />} />
                 <Route path="/hr-ai-agent" element={<HrAiAgent />} />
                 <Route path="/aichat" element={<Aichat />} />
+                <Route path="/resume-short" element={<Resumeshort></Resumeshort>} />
               </Routes>
             </main>
           </div>

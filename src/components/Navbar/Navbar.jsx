@@ -27,14 +27,14 @@ const Navbar = () => {
             </a>
           </li> */}
           <li className="navbar-item">
-            <a href="/resume-shortlisted">Resume Shortlisted</a>
+            <a href="/resume-automation">Resume Shortlisted</a>
           </li>
           <li className="navbar-item">
             <a href="/hr-ai-agent">Ai Agent</a>
           </li>
-          <li className="navbar-item">
+          {/* <li className="navbar-item">
             <a href="/excel-automation">Excel Automation</a>
-          </li>
+          </li> */}
           <li className="navbar-item">
             <a href="/user-panel">User Details</a>
           </li>

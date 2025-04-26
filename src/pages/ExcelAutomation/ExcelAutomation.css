@@ -1,5 +1,6 @@
 .excel-automation {
   padding: 20px;
+  margin-top: 4rem;
 }
 
 .page-header {
@@ -331,6 +332,7 @@
 /* Result Section */
 .result-header {
   display: flex;
+  /* width: 100vw; */
   align-items: center;
   margin-bottom: 30px;
 }
@@ -353,6 +355,7 @@
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
   margin-bottom: 30px;
+  
 }
 
 .result-item {
@@ -360,6 +363,8 @@
   border-radius: 8px;
   padding: 20px;
   display: flex;
+  width: 50rem;
+  margin-right: 2rem;
   align-items: center;
 }
 
@@ -372,9 +377,11 @@
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.9rem;
   margin-bottom: 5px;
+  margin-left: 1rem;
 }
 
 .result-value {
+  margin: 1rem;
   font-weight: 600;
 }
 

@@ -2,43 +2,87 @@
 
 import { useState } from "react"
 import "./ExcelAutomation.css"
+import { useEffect } from "react"
+import axios from "axios"
 
 const ExcelAutomation = () => {
-  const [activeTab, setActiveTab] = useState("upload")
-  const [file, setFile] = useState(null)
-  const [processing, setProcessing] = useState(false)
-  const [result, setResult] = useState(null)
+  // const [activeTab, setActiveTab] = useState("upload")
+  // const [file, setFile] = useState(null)
+  // const [processing, setProcessing] = useState(false)
+  // const [result, setResult] = useState(null)
 
-  const handleFileChange = (e) => {
-    if (e.target.files.length > 0) {
-      setFile(e.target.files[0])
+  // const handleFileChange = (e) => {
+  //   if (e.target.files.length > 0) {
+  //     setFile(e.target.files[0])
+  //   }
+  // }
+
+  // const handleProcess = () => {
+  //   if (!file) return
+
+  //   setProcessing(true)
+
+  //   // Simulate processing
+  //   setTimeout(() => {
+  //     setProcessing(false)
+  //     setResult({
+  //       fileName: file.name,
+  //       rowsProcessed: Math.floor(Math.random() * 1000) + 100,
+  //       columnsProcessed: Math.floor(Math.random() * 20) + 5,
+  //       automationApplied: ["Data Cleaning", "Format Standardization", "Duplicate Removal"],
+  //       completionTime: "00:00:45",
+  //     })
+  //     setActiveTab("result")
+  //   }, 3000)
+  // }
+
+  // const handleReset = () => {
+  //   setFile(null)
+  //   setResult(null)
+  //   setActiveTab("upload")
+  // }
+
+
+  const [files, setFiles] = useState([]);
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [datas, setData] = useState([]);
+  const [loading1, setLoading1] = useState(false);
+  useEffect(() => {
+    async function apicalling() {
+      let url = "http://localhost:5000/getResult";
+      let response = await fetch(url);
+      let data = await response.json();
+      // console.log(data);
+      setData(data);
+      setLoading1((prev) => !prev);
+      console.log(datas);
     }
-  }
+    apicalling();
+  });
 
-  const handleProcess = () => {
-    if (!file) return
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!files.length) return;
 
-    setProcessing(true)
+    const formData = new FormData();
+    Array.from(files).forEach(file => {
+      formData.append('pdfs', file);
+    });
 
-    // Simulate processing
-    setTimeout(() => {
-      setProcessing(false)
-      setResult({
-        fileName: file.name,
-        rowsProcessed: Math.floor(Math.random() * 1000) + 100,
-        columnsProcessed: Math.floor(Math.random() * 20) + 5,
-        automationApplied: ["Data Cleaning", "Format Standardization", "Duplicate Removal"],
-        completionTime: "00:00:45",
-      })
-      setActiveTab("result")
-    }, 3000)
-  }
-
-  const handleReset = () => {
-    setFile(null)
-    setResult(null)
-    setActiveTab("upload")
-  }
+    try {
+      setLoading(true);
+      const response = await axios.post('http://localhost:5000/upload', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+      console.log(response.data);
+      setResults(response.data);
+    } catch (error) {
+      alert('Error uploading files: ' + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="excel-automation">
@@ -49,7 +93,7 @@ const ExcelAutomation = () => {
 
       <div className="automation-container">
         <div className="automation-sidebar">
-          <div className="automation-steps">
+          {/* <div className="automation-steps">
             <div className={`step ${activeTab === "upload" ? "active" : ""} ${result ? "completed" : ""}`}>
               <div className="step-number">1</div>
               <div className="step-content">
@@ -81,9 +125,9 @@ const ExcelAutomation = () => {
                 <div className="step-description">View and download results</div>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <div className="automation-features">
+          {/* <div className="automation-features">
             <h3>Features</h3>
             <ul>
               <li>
@@ -107,38 +151,40 @@ const ExcelAutomation = () => {
                 <span>Custom Formulas</span>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
 
         <div className="automation-content">
-          {activeTab === "upload" && (
-            <div className="upload-section">
-              <div className="upload-area">
-                <input
-                  type="file"
-                  id="excel-file"
-                  accept=".xlsx,.xls,.csv"
-                  onChange={handleFileChange}
-                  className="file-input"
-                />
-                <label htmlFor="excel-file" className="file-label">
-                  <div className="upload-icon">📁</div>
-                  <div className="upload-text">
-                    {file ? file.name : "Drag & drop your Excel file here or click to browse"}
-                  </div>
-                  <div className="upload-formats">Supports .xlsx, .xls, .csv</div>
-                </label>
-              </div>
+          <form onSubmit={handleSubmit}>
+            <div className="upload-area">
+              <input
+                type="file"
+                accept="application/pdf"
+                multiple
+                onChange={(e) => setFiles(e.target.files)}
 
-              <div className="upload-actions">
-                <button className="next-button" disabled={!file} onClick={() => setActiveTab("configure")}>
-                  Next: Configure
-                </button>
-              </div>
+              />
+              <label htmlFor="excel-file" className="file-label">
+                <div className="upload-icon">📁</div>
+                <div className="upload-text">
+                  Drag & drop your Excel file here or click to browse
+                </div>
+                <div className="upload-formats">Supports .pdf</div>
+              </label>
             </div>
-          )}
 
-          {activeTab === "configure" && (
+            <div className="upload-actions">
+              <button className="next-button" type="submit" disabled={loading}>
+                {loading ? 'Processing...' : 'Upload PDFs'}
+              </button>
+            </div>
+          </form>
+          <div className="upload-section">
+
+          </div>
+
+
+          {/* { "configure" && (
             <div className="configure-section">
               <h2>Configure Automation</h2>
 
@@ -216,20 +262,20 @@ const ExcelAutomation = () => {
                 </button>
               </div>
             </div>
-          )}
+          )} */}
 
-          {activeTab === "process" && (
+          {/* {  "process" && (
             <div className="process-section">
               <h2>Process File</h2>
 
               <div className="process-summary">
                 <div className="summary-item">
                   <div className="summary-label">File Name</div>
-                  <div className="summary-value">{file?.name}</div>
+                  <div className="summary-value"></div>
                 </div>
                 <div className="summary-item">
                   <div className="summary-label">File Size</div>
-                  <div className="summary-value">{(file?.size / 1024).toFixed(2)} KB</div>
+                  <div className="summary-value"></div>
                 </div>
                 <div className="summary-item">
                   <div className="summary-label">Selected Operations</div>
@@ -237,25 +283,20 @@ const ExcelAutomation = () => {
                 </div>
               </div>
 
-              {processing ? (
-                <div className="processing-status">
-                  <div className="processing-spinner"></div>
-                  <div className="processing-text">Processing your file...</div>
-                </div>
-              ) : (
+              
                 <div className="process-actions">
                   <button className="back-button" onClick={() => setActiveTab("configure")}>
                     Back
                   </button>
-                  <button className="process-button" onClick={handleProcess}>
+                  <button className="process-button" >
                     Start Processing
                   </button>
                 </div>
-              )}
+             
             </div>
-          )}
+          )} */}
 
-          {activeTab === "result" && result && (
+          {/* { "result" && results && (
             <div className="result-section">
               <div className="result-header">
                 <h2>Processing Complete</h2>
@@ -267,7 +308,7 @@ const ExcelAutomation = () => {
                   <div className="result-icon">📄</div>
                   <div className="result-content">
                     <div className="result-label">File Processed</div>
-                    <div className="result-value">{result.fileName}</div>
+                    <div className="result-value">{results.fileName}</div>
                   </div>
                 </div>
 
@@ -275,7 +316,7 @@ const ExcelAutomation = () => {
                   <div className="result-icon">🔢</div>
                   <div className="result-content">
                     <div className="result-label">Rows Processed</div>
-                    <div className="result-value">{result.rowsProcessed}</div>
+                    <div className="result-value"></div>
                   </div>
                 </div>
 
@@ -283,7 +324,7 @@ const ExcelAutomation = () => {
                   <div className="result-icon">📊</div>
                   <div className="result-content">
                     <div className="result-label">Columns Processed</div>
-                    <div className="result-value">{result.columnsProcessed}</div>
+                    <div className="result-value"></div>
                   </div>
                 </div>
 
@@ -291,7 +332,7 @@ const ExcelAutomation = () => {
                   <div className="result-icon">⚙️</div>
                   <div className="result-content">
                     <div className="result-label">Automation Applied</div>
-                    <div className="result-value">{result.automationApplied.join(", ")}</div>
+                    <div className="result-value"></div>
                   </div>
                 </div>
 
@@ -299,21 +340,75 @@ const ExcelAutomation = () => {
                   <div className="result-icon">⏱️</div>
                   <div className="result-content">
                     <div className="result-label">Completion Time</div>
-                    <div className="result-value">{result.completionTime}</div>
+                    <div className="result-value"></div>
                   </div>
                 </div>
               </div>
 
               <div className="result-actions">
                 <button className="download-button">Download Result</button>
-                <button className="new-process-button" onClick={handleReset}>
+                <button className="new-process-button" >
                   Process Another File
                 </button>
               </div>
             </div>
-          )}
+          )} */}
         </div>
       </div>
+      <div className="result-section">
+        <div className="result-header">
+          <h2>Processing Complete</h2>
+          <div className="result-badge">Success</div>
+        </div>
+
+       
+
+        <div className="result-summary">
+          <div className="result-item">
+            <div className="result-icon">📄</div>
+            <div className="result-content">
+              <div className="result-label">Here are the names of all the uploaded resumes</div>
+              {results.length > 0 && (
+          <div>
+            {results.map((result, index) => (
+              <div key={index}>
+                {/* <h3>{result.fileName}</h3> */}
+                <div className="result-value">{result.fileName}</div>
+                {/* <pre>{result.content}</pre> */}
+              </div>
+            ))}
+          </div>
+        )}
+             
+            </div>
+          </div>
+
+
+        </div>
+        <div className="result-summary">
+          <div className="result-item">
+            <div className="result-icon">📄</div>
+            <div className="result-content">
+              <div className="result-label">Result – The names of the shortlisted resumes are displayed below.</div>
+              {datas.length > 0 && (
+          <div>
+            {datas.map((result, index) => (
+              result !== "No skills are found in this Resume." && (
+                <div key={index}>
+                  <div className="result-value">{index} - {result}</div>
+                </div>
+            )))}
+          </div>
+        )}
+             
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+
     </div>
   )
 }
