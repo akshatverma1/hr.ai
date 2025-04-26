@@ -177,6 +177,12 @@ const ExcelAutomation = () => {
               <button className="next-button" type="submit" disabled={loading}>
                 {loading ? 'Processing...' : 'Upload PDFs'}
               </button>
+              <br></br>
+              <form action="https://hr-ai-lake.vercel.app/delete" method="get">
+              <button style={{marginLeft:"2rem"}} className="next-button" type="submit" disabled={loading}>
+                {loading ? 'Processing...' : 'Delete All PDFs'}
+              </button>
+              </form>
             </div>
           </form>
           <div className="upload-section">
